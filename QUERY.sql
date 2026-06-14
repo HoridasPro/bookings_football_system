@@ -32,8 +32,6 @@ create table Matches (
     )
   ) not null
 )
-
-
 --matches data insert
 insert into
   Matches (
@@ -79,6 +77,8 @@ values
     80.00,
     'Available'
   );
+
+
 --create booking table
 create table Bookings (
   booking_id int primary key,
@@ -91,10 +91,22 @@ create table Bookings (
   total_cost int not null check (total_cost > 0)
 );
 
---bookings data insert
+--insert bookings data
 insert into Bookings (booking_id, user_id, match_id, seat_number, payment_status, total_cost) values
 (501, 1, 101, 'A-12', 'Confirmed', 150.00),
 (502, 1, 102, 'B-04', 'Confirmed', 120.00),
 (503, 2, 101, 'A-13', 'Confirmed', 150.00),
 (504, 2, 101, NULL, NULL, 150.00),
 (505, 3, 102, 'C-20', 'Pending', 120.00);
+
+
+--Query-1
+select
+  match_id,
+  fixture,
+  base_ticket_price
+from
+  Matches
+where
+  tournament_category = 'Champions League'
+  and match_status = 'Available'
