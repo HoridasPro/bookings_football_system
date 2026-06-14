@@ -17,4 +17,14 @@ create table Users(
 (3, 'Sajjad Rahman', 'sajjad@mail.com', 'Ticket Manager', '+8801733333333'),
 (4, 'Jannat Ara', 'jannat@mail.com', 'Football Fan', NULL);
 
-
+--create booking table
+create table Bookings (
+  booking_id INT primary key,
+  user_id INT references Users (user_id) ON delete cascade,
+  match_id INT references Matches (match_id) ON delete cascade,
+  seat_number VARCHAR(10),
+  payment_status VARCHAR(20) check (
+    payment_status IN ('Pending', 'Confirmed', 'Cancelled', 'Refunded')
+  ),
+  total_cost INT not null check (total_cost > 0)
+);
