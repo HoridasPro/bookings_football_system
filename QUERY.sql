@@ -1,5 +1,5 @@
 --create database
-create database booking_football_system;
+create database football_tickets_bookings_system;
 
 --create users table
 create table Users(
